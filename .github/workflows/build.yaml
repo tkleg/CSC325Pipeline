@@ -7,25 +7,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
+    steps:    
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
-      with:
-        channel: 'stable'
+        with:
+          channel: 'stable'
 
-      -name: Clone into Repo
-      run: git clone https://github.com/tkleg/CSC325Pipeline.git
+      - name: Clone into Repo
+        run: git clone https://github.com/tkleg/CSC325Pipeline.git
     
-      -name: install app dependencies
-      working-directory: ./app
-      run: flutter pub get
+      - name: install app dependencies
+        working-directory: ./app
+        run: flutter pub get
 
-      -name: Run tests
-      working-directory: ./app
-      run: flutter test
+      - name: Run tests
+        working-directory: ./app
+        run: flutter test
 
-      -name: Build flutter web
-      working-directory: ./app
-      run: flutter build web
+      - name: Build flutter web
+        working-directory: ./app
+        run: flutter build web
 
-      -name: Deploy
+      - name: Deploy
