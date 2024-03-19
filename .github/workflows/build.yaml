@@ -1,6 +1,6 @@
 name: Main Pipeline
 
-on:   
+on:
   push:
     branches: ["main"]
 
