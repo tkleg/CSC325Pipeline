@@ -1,9 +1,6 @@
-name: Main Pipeline
-
 on:
   push:
-    branches:
-      - 'main'
+    branches: ["main"]
 
 jobs:
   build:
