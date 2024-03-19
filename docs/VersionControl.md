@@ -13,6 +13,13 @@ As mentioned above, ```Version Control``` is crucial to avoid breaking a program
 #### Repository Structure
 My repository is largely just using the main branch. This is because the actual development of the application was completed prior to using a ```GitHub``` repository. The only changes needed to be made to the repo are the additions of documentation files and YAML files. Since these files are all added one at a time and have no chance of breaking the repo, there is no need to use branching at the moment. However, once the ```build.yaml``` file works, the repo will be copied to another branch in case the need to make alterations to it arises.
 
+#### Repository File Structure
+- ```./devcontainer```: Contains ```devcontainer.json``` and ```DockerFile```. It hosts the files necessary for the ```DevContainer``` to build properly and have the proper tools.
+- ```./github```: Contains ```YAML``` files that allow for proper build and deployment of the app.
+- ```./app```: Contains the flutter application. This includes but is not limited to test files, source code, and code to allow the app to work on various operating systems.
+- ```./docs```: Contains markdown files which explain various parts of the repository, its contents, and how to use the repository and its contents.
+- ```README.md```: Contains instructions for running the ```flutter web application``` in a ```DevContainer``` via their computer.
+
 #### Repository Integration with DevContainer and CI/CD Pipeline
 Every branch in the repository contains the DevContainer configuration files and the files for the default app (the app will be changed to the final app at a later date). This makes it so that upon cloning any branch in the repo you can instantly open it up in a ```DevContainer```. This allows for easy testing of the flutter web apps and development of the apps.
 
