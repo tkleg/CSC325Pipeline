@@ -29,5 +29,4 @@ jobs:
         run: flutter build web
 
       - name: Deploy
-        working-directory: ./app
-        run: flutter run -d web-server
+        run: echo "Build Successful"
