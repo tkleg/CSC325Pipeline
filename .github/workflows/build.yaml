@@ -2,16 +2,17 @@ name: Main Pipeline
 
 on:
   push:
-    branches: ["main"]
+    branches: ["perfectBuild.yaml"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:    
       - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
+      - name: Install Flutter SDK
+        - uses: subosito/flutter-action@v2
+          with:
+            channel: 'stable'
 
       - name: Clone into Repo
         run: git clone https://github.com/tkleg/CSC325Pipeline.git
