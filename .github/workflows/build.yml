@@ -32,7 +32,7 @@ jobs:
         run: pwd
 
       - name: Deploy
-        run: "Calling deploy.yml"
+        run: echo "Calling deploy.yml"
 
       - name: call deploy.yml
         uses: ./github/workflows/deploy.yml@v1
