@@ -1,1 +1,11 @@
 name: Deploy Flutter Web Application
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Confirm Run
+        run: echo "deploy.yml called and ran"
