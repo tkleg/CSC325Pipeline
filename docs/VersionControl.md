@@ -3,7 +3,7 @@
 ### Introduction
 
 #### Importance of Version Control
-```Version Control``` is crucial to software development mainly because it prevents developers from breaking software accidentally and not being able to revert back to a version where it was working. Additionally, it allows for the easy adding of features without interfering with the base software.
+```Version Control``` is crucial to software development mainly because it prevents developers from breaking software accidentally and not being able to revert back to a version where it was working. Additionally, it allows for the easy adding of features without interfering with the base branches.
 
 #### Role of Version Control
 As mentioned above, ```Version Control``` is crucial to avoid breaking a program on accident. It also makes software development easier by allowing developers to look at many different versions of the software to be able to track when certain changes are made. Finally, it makes collaboration much easier because it allows for developers to see what changes other developers made to a software application.
