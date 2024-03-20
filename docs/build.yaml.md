@@ -1,0 +1,2 @@
+## build.yaml documentation
+The approach was basically to use what was shown in class and make the necessary adjustments. The issue I kept having was syntax, yaml indents are awful. After plenty of attempts I was able to get it to work. I also attempted to name some more steps but there were more syntax issues so I let that go.
