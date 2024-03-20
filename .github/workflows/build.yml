@@ -29,4 +29,5 @@ jobs:
         run: flutter build web
 
       - name: Deploy
+        run: pwd
         uses: ./github/workflows/deploy.yml
