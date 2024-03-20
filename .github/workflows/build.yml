@@ -13,8 +13,8 @@ jobs:
         with:
           channel: 'stable'
 
-      #- name: Clone into Repo
-      #  run: git clone https://github.com/tkleg/CSC325Pipeline.git
+      - name: Clone into Repo
+        run: git clone https://github.com/tkleg/CSC325Pipeline.git
     
       - name: install app dependencies
         working-directory: ./app
@@ -32,4 +32,5 @@ jobs:
         run: pwd
 
       - name: Deploy
-        uses: ./github/workflows/deploy.yml
+  call-workflow-in-local-repo:
+    uses: ./github/workflows/deploy.yml
