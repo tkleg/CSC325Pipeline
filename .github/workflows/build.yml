@@ -34,7 +34,5 @@ jobs:
       - name: Deploy
         run: "Calling deploy.yml"
 
-  call-workflow-in-local-repo:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ./github/workflows/deploy.yml
+      - name: call deploy.yml
+        uses: ./github/workflows/deploy.yml
