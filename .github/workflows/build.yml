@@ -10,6 +10,7 @@ jobs:
     steps:    
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
+      - uses: ./github/workflows/deploy.yml
         with:
           channel: 'stable'
 
@@ -29,4 +30,3 @@ jobs:
         run: flutter build web
 
       - name: Deploy
-        run: echo "Build Successful"
