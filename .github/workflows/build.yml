@@ -35,4 +35,4 @@ jobs:
         run: "Calling deploy.yml"
 
       - name: call deploy.yml
-        uses: ./github/workflows/deploy.yml
+        uses: ./github/workflows/deploy.yml@v1
