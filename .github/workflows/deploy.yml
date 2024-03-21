@@ -11,6 +11,11 @@ jobs:
         with:
           channel: 'stable'
 
-          
+      - name: Web Deploy - GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+         publish_dir: ./app/build/web/
+         
       - name: Confirm Run
         run: echo "deploy.yml called and ran"

@@ -27,7 +27,7 @@ jobs:
       - name: Build flutter web
         working-directory: ./app
         run: flutter build web
-
+        
       - name: see path
         run: pwd
 
