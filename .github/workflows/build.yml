@@ -35,6 +35,7 @@ jobs:
         run: echo "Calling deploy.yml"
 
   deploy:
+    runs-on: ubuntu-latest
     steps:
       - name: Web Deploy - GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
