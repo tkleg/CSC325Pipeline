@@ -2,7 +2,7 @@ name: Main Pipeline
 
 on:
   push:
-    branches: ["main"]
+    branches: ["permissionsAuto"]
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
       - name: Build flutter web
         working-directory: ./app
         run: flutter build web
-        
+
       - name: see path
         run: pwd
 
