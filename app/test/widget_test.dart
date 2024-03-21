@@ -15,15 +15,15 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
+    // Verify that the turn starts at X.
     expect(find.text('Current Turn: X'), findsOneWidget);
     expect(find.text('Current Turn: O'), findsNothing);
 
-    // Tap the '+' icon and trigger a frame.
+    // Tap a square.
     await tester.tap(find.byIcon(Icons.square));
     await tester.pump();
 
-    // Verify that our counter has incremented.
+    // Verify that the turn has changed to O.
     expect(find.text('Current Turn: O'), findsNothing);
     expect(find.text('Current Turn: X'), findsOneWidget);
   });
