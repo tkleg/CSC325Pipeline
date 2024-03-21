@@ -35,4 +35,8 @@ jobs:
         run: echo "Calling deploy.yml"
 
   deploy:
-    - uses: ./.github/workflows/deploy.yml
+    - name: Web Deploy - GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+         publish_dir: ./app/build/web/
