@@ -5,48 +5,23 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'TicTacToe',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple),
+        // useMaterial3: true, // Material 3 is experimental, you can enable it if you want
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'TicTacToe'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -54,72 +29,135 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+enum Turns { Xturn, Oturn }
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+class _MyHomePageState extends State<MyHomePage> {
+  
+  List<IconData> currIcons = List.filled(9, Icons.square); // Initialize currIcons
+  Turns currTurn = Turns.Xturn; // Correct enum usage
+  String currTurnString = "X";
+  String headerText = "Current Turn: ";
+  bool gameOver = false;
+  //String winner = "";
+
+  void changeIconAndTurn(int index, Turns who) {
+    if (currIcons[index] != Icons.square) return;
+    if (who == Turns.Xturn)
+      currIcons[index] = Icons.clear_outlined;
+    else
+      currIcons[index] = Icons.circle_outlined;
+
+    // Toggle turns
+    currTurn = (currTurn == Turns.Xturn) ? Turns.Oturn : Turns.Xturn;
+    currTurnString = (currTurn == Turns.Xturn) ? "X" : "O";
   }
+
+void checkEndGame(){
+  for( int x = 0; x < 9; x++ ){//check for a tie
+    if( currIcons[x] == Icons.square )
+      break;
+    if( x == 8 ){
+      //setState((){
+      gameOver = true;
+      headerText = "It's a Tie!";
+      //});
+      //return;
+    }
+  }
+  if( checkWin(Icons.clear_outlined) ){//Did X win
+    //setState((){
+      gameOver = true;
+      headerText = "X is the Winner, Congrats!";
+    //});
+  }else if( checkWin(Icons.circle_outlined) ){//Did O win
+    //setState((){
+      gameOver = true;
+      headerText = "O is the Winner, Congrats!";
+    //});
+  }
+
+}
+
+bool checkWin( IconData d ){
+  if( currIcons[0] == d && currIcons[3] == d && currIcons[6] == d )
+    return true;
+  else if( currIcons[1] == d && currIcons[4] == d && currIcons[7] == d ) 
+    return true;
+  else if( currIcons[2] == d && currIcons[5] == d && currIcons[8] == d )
+    return true;
+  else if( currIcons[0] == d && currIcons[1] == d && currIcons[2] == d )
+    return true;
+  else if( currIcons[3] == d && currIcons[4] == d && currIcons[5] == d ) 
+    return true;
+  else if( currIcons[6] == d && currIcons[7] == d && currIcons[8] == d )
+    return true;
+  else if( currIcons[0] == d && currIcons[4] == d && currIcons[8] == d ) 
+    return true;
+  else if( currIcons[2] == d && currIcons[4] == d && currIcons[6] == d )
+    return true;
+  else
+  return false; 
+}
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      body: (!gameOver) ? SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Current Turn: $currTurnString",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
+              Container(
+                width: 350,
+                height: 350,
+                child: GridView.count(
+                  crossAxisCount: 3,
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  children: List.generate(9, (index) {
+                    return SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //setState(() {
+                            changeIconAndTurn(index, currTurn);
+                            checkEndGame();
+                          //});
+                          setState((){});
+                        },
+                        child: Icon(currIcons[index], size: 50),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+            ],
+          ),
         ),
+      )
+      : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [ 
+                    Text(
+                    headerText,
+                    style: TextStyle(fontSize: 24),
+                    ),
+                    Text( "Refresh the page to play again.",
+                      style: TextStyle(fontSize: 24)
+                    ),
+                  ],
+                ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
