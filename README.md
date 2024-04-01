@@ -11,4 +11,4 @@ Steps to setup and use the containerized development environment to run a flutte
 9. In the termainl, run "flutter create (app name)" to create a default flutter app 
 10. In the terminal, run "cd (app name in step 9)" to cd into the app
 11. In the terminal, run the command "flutter run -d web-server" to run the app
-12. Finally, follow the localhost link that appears in the terminal ( this may take around a minute )
+12. Finally, follow the localhost link that appears in the terminal ( this may take around a minute ).
