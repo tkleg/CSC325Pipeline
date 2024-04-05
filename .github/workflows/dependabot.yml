@@ -4,6 +4,11 @@
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 # https://containers.dev/guide/dependabot
 
+on: 
+  push:
+    paths:
+      - 'dependabot.yml'
+      
 version: 2
 updates:
  - package-ecosystem: "devcontainers"

@@ -2,8 +2,11 @@ name: Main Pipeline
 
 on:
   push:
-    branches: ["main"]
-
+    branches:
+      - '2-stop-denpendabotyml-from-running-and-make-buildyml-not-run-on-every-push'
+    paths:
+      - ! '**.md'
+  
 jobs:
   build:
     runs-on: ubuntu-latest
