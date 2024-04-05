@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String currTurnString = "X";
   String headerText = "Current Turn: ";
   bool gameOver = false;
-  //String winner = "";
+  //String winner = "" ;
 
   void changeIconAndTurn(int index, Turns who) {
     if (currIcons[index] != Icons.square) return;
