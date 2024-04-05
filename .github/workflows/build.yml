@@ -2,37 +2,67 @@ name: Main Pipeline
 
 on:
   push:
-    branches: ["main"]
+    branches: ["permissionsAuto"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    #defaults:
+    #  run:
+    #    working-directory: ./app
     steps:    
       - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
 
-      - name: Clone into Repo
-        run: git clone https://github.com/tkleg/CSC325Pipeline.git
+      #- name: Clone into Repo
+      #  run: git clone https://github.com/tkleg/CSC325Pipeline.git
     
       - name: install app dependencies
         working-directory: ./app
         run: flutter pub get
 
-      - name: Run tests
-        working-directory: ./app
-        run: flutter test
+      - name: Set up lcov
+        run: |
+          sudo apt-get update -qq -y
+          sudo apt-get install lcov -y
+
+      #- name: Run Tests
+      #  run: flutter test --coverage
+      #- name: Report code coverage
+      # uses: zgosalvez/github-actions-report-lcov@v3
+      # with:
+      #    coverage-files: lcov.info
+      #    minimum-coverage: 50
+      #    github-token: ${{ secrets.GITHUB_TOKEN }}
+      #    working-directory: ./coverage
+      #    update-comment: true
+          
+      #- name: Run tests
+      #  working-directory: ./app
+      #  run: flutter test
 
       - name: Build flutter web
         working-directory: ./app
         run: flutter build web
 
-      - name: see path
-        run: pwd
+      #- name: see path
+      #  run: pwd
 
-      - name: Deploy
-        run: echo "Calling deploy.yml"
-
-      - name: call deploy.yml
-        uses: ./.github/workflows/deploy.yml
+      #- name: Deploy
+      #  run: echo "Calling deploy.yml"
+      
+      - name: Web Deploy - GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./app/build/web/
+  #deploy:
+   # runs-on: ubuntu-latest
+    #steps:
+     # - name: Web Deploy - GitHub Pages
+      #  uses: peaceiris/actions-gh-pages@v3
+       # with:
+        #  github_token: ${{ secrets.GITHUB_TOKEN }}
+         # publish_dir: ./app/build/web/

@@ -11,20 +11,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:app/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets("Counter increments smoke test", (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the turn starts at X.
+    expect(find.text("Current Turn: X"), findsOneWidget);
+    expect(find.text("Current Turn: O"), findsNothing);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // Tap a square.
+    await tester.tap(find.byIcon(Icons.square));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that the turn has changed to O.
+    expect(find.text("Current Turn: O"), findsNothing);
+    expect(find.text("Current Turn: X"), findsOneWidget);
   });
 }
