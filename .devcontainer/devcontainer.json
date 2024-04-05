@@ -15,7 +15,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCcleommand' to run commands after the container is created.
-	"postCreateCommand": "git config --global --add safe.directory /sdk/flutter && flutter config --no-analytics && flutter clean && sudo chown -R vscode /flutter/.pub-cache/",
+	"postCreateCommand": "git config --global --add safe.directory /sdk/flutter && flutter config --no-analytics && sudo chown -R vscode /flutter/.pub-cache/",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
