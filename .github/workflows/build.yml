@@ -3,7 +3,7 @@ name: Main Pipeline
 on:
   push:
     branches: ["2-stop-denpendabotyml-from-running-and-make-buildyml-not-run-on-every-push"]
-    paths: ["**!.(md)"]
+    paths-ignore: ["**.md"]
   
 jobs:
   build:
