@@ -8,8 +8,7 @@
 
 on: 
   push:
-    paths:
-      - './.github/workflows/dependabot.yml'
+    paths: ["./.github/workflows/dependabot.yml"]
       
 version: 2
 updates:
