@@ -9,9 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./.
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v1
@@ -30,8 +27,8 @@ jobs:
       - name: Run Tests with Code Coverage
         run: flutter test --coverage
       - name: Report code coverage
-       uses: zgosalvez/github-actions-report-lcov@v3
-       with:
+        uses: zgosalvez/github-actions-report-lcov@v3
+        with:
           coverage-files: lcov.info
           minimum-coverage: 50
           github-token: ${{ secrets.GITHUB_TOKEN }}
