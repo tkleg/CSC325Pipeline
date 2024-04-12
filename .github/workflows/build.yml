@@ -32,7 +32,7 @@ jobs:
           coverage-files: lcov.info
           minimum-coverage: 50
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: ./coverage
+          working-directory: ./app./coverage/lcov.info
           update-comment: true
           
       #- name: Run tests
