@@ -28,16 +28,17 @@ jobs:
         working-directory: ./app
         run: flutter test --coverage
       - name: Report code coverage
-        uses: fjlopezs/lcov-reporter-action@v1.0.0
+        uses: zgosalvez/github-actions-report-lcov@v3
         with:
-          lcov-file: ./app/coverage/lcov.info
-        #uses: zgosalvez/github-actions-report-lcov@v3
+          coverage-files: lcov.info
+          minimum-coverage: 50
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          working-directory: ./app/coverage/lcov.info
+          update-comment: true
+        #uses: fjlopezs/lcov-reporter-action@v1.0.0
         #with:
-        #  coverage-files: lcov.info
-        #  minimum-coverage: 50
-        #  github-token: ${{ secrets.GITHUB_TOKEN }}
-        #  working-directory: ./app/coverage/lcov.info
-        #  update-comment: true
+        #  lcov-file: ./app/coverage/lcov.info
+        
           
       #- name: Run tests
       #  working-directory: ./app
