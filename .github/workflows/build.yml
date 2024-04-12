@@ -3,7 +3,7 @@ name: Main Pipeline
 # triggers on any push to the branch when any file other than a markdown file is changed
 on:
   push:
-    branches: ["main"]
+    branches: ["5-flutter-test-coverage-does-not-work"]
     paths-ignore: ["**.md", "**.txt"]
   
 jobs:
@@ -24,16 +24,16 @@ jobs:
           sudo apt-get update -qq -y
           sudo apt-get install lcov -y
 
-      #- name: Run Tests 
-      #  run: flutter test --coverage
-      #- name: Report code coverage
-      # uses: zgosalvez/github-actions-report-lcov@v3
-      # with:
-      #    coverage-files: lcov.info
-      #    minimum-coverage: 50
-      #    github-token: ${{ secrets.GITHUB_TOKEN }}
-      #    working-directory: ./coverage
-      #    update-comment: true
+      - name: Run Tests with Code Coverage
+        run: flutter test --coverage
+      - name: Report code coverage
+       uses: zgosalvez/github-actions-report-lcov@v3
+       with:
+          coverage-files: lcov.info
+          minimum-coverage: 50
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          working-directory: ./coverage
+          update-comment: true
           
       #- name: Run tests
       #  working-directory: ./app
