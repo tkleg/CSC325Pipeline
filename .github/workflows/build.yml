@@ -27,7 +27,7 @@ jobs:
       - name: Run Tests with Code Coverage
         run: flutter test --coverage
       - name: Report code coverage
-        uses: fjlopezs/lcov-reporter-action@v1.0/0
+        uses: fjlopezs/lcov-reporter-action@v1.0.0
         with:
           lcov-file: ./app/coverage/lcov.info
         #uses: zgosalvez/github-actions-report-lcov@v3
