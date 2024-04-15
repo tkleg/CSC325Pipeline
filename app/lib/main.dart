@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
       title: 'TicTacToe',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple),
-        // useMaterial3: true, // Material 3 is experimental, you can enable it if you want
       ),
       home: const MyHomePage(title: 'TicTacToe'),
     );
@@ -38,7 +37,6 @@ class _MyHomePageState extends State<MyHomePage> {
   String currTurnString = "X";
   String headerText = "Current Turn: ";
   bool gameOver = false;
-  //String winner = "" ;
 
   void changeIconAndTurn(int index, Turns who) {
     if (currIcons[index] != Icons.square) return;
@@ -57,23 +55,16 @@ void checkEndGame(){
     if( currIcons[x] == Icons.square )
       break;
     if( x == 8 ){
-      //setState((){
       gameOver = true;
       headerText = "It's a Tie!";
-      //});
-      //return;
     }
   }
   if( checkWin(Icons.clear_outlined) ){//Did X win
-    //setState((){
       gameOver = true;
       headerText = "X is the Winner, Congrats!";
-    //});
   }else if( checkWin(Icons.circle_outlined) ){//Did O win
-    //setState((){
       gameOver = true;
       headerText = "O is the Winner, Congrats!";
-    //});
   }
 
 }
@@ -128,10 +119,8 @@ bool checkWin( IconData d ){
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          //setState(() {
-                            changeIconAndTurn(index, currTurn);
-                            checkEndGame();
-                          //});
+                          changeIconAndTurn(index, currTurn);
+                          checkEndGame();
                           setState((){});
                         },
                         child: Icon(currIcons[index], size: 50),
