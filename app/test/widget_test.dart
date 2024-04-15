@@ -8,29 +8,22 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that the turn starts at X.
-    expect(find.text("Current Turn: X"), findsOneWidget);
-
-    // Find all buttons using a more generic approach
     final allButtons = tester.widgetList(find.byType(ElevatedButton));
-
-    // Check if there are any buttons found
-    if (allButtons.isEmpty) {
-      // Handle the case where no buttons are found (optional)
-      print("No buttons found on the screen!");
-    } else {
-      // Safely access the first button (assuming there's at least one)
-      final firstButton = allButtons.first;
-
-      // Use the Finder returned by find.byWidget to create a Finder
-      final firstButtonFinder = find.byWidget(firstButton);
-
-      // Tap the first button using the Finder
-      await tester.tap(firstButtonFinder);
+    String turnString = "";
+    for( int i = 0 ; i <= 6; i++ ){//the game is one after the 7th button is clicked every time
+      
+      turnString = (i%2 == 0) ? "Current Turn: X" : "Current Turn: O";
+      expect(find.text(turnString), findsOneWidget);
+      
+      final button = allButtons.toList()[i];
+      final buttonFinder = find.byWidget(button);
+      await tester.tap(buttonFinder);
       await tester.pump();
-
-      // Verify that the turn has changed to O.
-      expect(find.text("Current Turn: O"), findsOneWidget);
     }
+    expect(find.text("X is the Winner, Congrats!"), findsOneWidget);
+    expect(find.text("Refresh the page to play again."), findsOneWidget);
+    /// Verify that the turn starts at X.
+    // Find all buttons using a more generic approach
+
   });
 }
