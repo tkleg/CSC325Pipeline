@@ -1,15 +1,15 @@
 name: Main Pipeline
 
-# triggers on any push to the branch when any file other than a markdown file is changed
+# triggers on any push to the branch when any file other than a markdown file or txt is changed
 on:
   push:
-    branches: ["main"]
+    branches: ["5-flutter-test-coverage-does-not-work"]
     paths-ignore: ["**.md", "**.txt"]
   
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:    
+    steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v1
         with:
@@ -24,20 +24,13 @@ jobs:
           sudo apt-get update -qq -y
           sudo apt-get install lcov -y
 
-      #- name: Run Tests with Code Coverage 
-      #  run: flutter test --coverage
-      #- name: Report code coverage
-      # uses: zgosalvez/github-actions-report-lcov@v3
-      # with:
-      #    coverage-files: lcov.info
-      #    minimum-coverage: 50
-      #    github-token: ${{ secrets.GITHUB_TOKEN }}
-      #    working-directory: ./coverage
-      #    update-comment: true
-          
-      #- name: Run tests
-      #  working-directory: ./app
-      #  run: flutter test
+      - name: Run tests with code coverage
+        working-directory: ./app
+        run: flutter test --coverage
+      - name: Report code coverage
+        uses: fjlopezs/lcov-reporter-action@v1.0.0
+        with:
+          lcov-file: ./app/coverage/lcov.info
 
       - name: Build flutter web
         working-directory: ./app
@@ -48,11 +41,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./app/build/web/
-  #deploy:
-   # runs-on: ubuntu-latest
-    #steps:
-     # - name: Web Deploy - GitHub Pages
-      #  uses: peaceiris/actions-gh-pages@v3
-       # with:
-        #  github_token: ${{ secrets.GITHUB_TOKEN }}
-         # publish_dir: ./app/build/web/
