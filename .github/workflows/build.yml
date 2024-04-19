@@ -3,7 +3,7 @@ name: Main Pipeline
 # triggers on any push to the branch when any file other than a markdown file or txt is changed
 on:
   push:
-    branches: ["5-flutter-test-coverage-does-not-work"]
+    branches: ["main"]
     paths-ignore: ["**.md", "**.txt"]
   
 jobs:
